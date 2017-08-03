@@ -3,7 +3,6 @@ package com.newrocktech.autoprint.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -40,21 +39,27 @@ public class ZipUtils {
 		}
 
 	}
-	public static void deleteFile(String rootPath,char c){
+
+	public static void deleteFile(String rootPath, char c, String BIN) {
 		File fr = new File(rootPath);
-		String ip = "172."+((int)c-64);
-        if (fr.isDirectory()) {
-            File ff[] = fr.listFiles();
-            for (int i = 0; i < ff.length; i++) {
-            	String filename = ff[i].getName();
-            	if(filename.contains(ip)){
-            		 ff[i].delete();
-            	}
-              
-            }
-        }
-       
+		String ip = "172." + ((int) c - 64);
+		// System.out.println(ip+"deleteFile"+BIN);
+		if (fr.isDirectory()) {
+			File ff[] = fr.listFiles();
+			if (ff.length > 0) {
+				for (int i = 0; i < ff.length; i++) {
+					String filename = ff[i].getName();
+					if (filename.contains(ip) && filename.contains(BIN)) {
+						ff[i].delete();
+					}
+
+				}
+			}
+
+		}
+
 	}
+
 	public static void copyFolder(String oldPath, String newPath) {
 
 		try {

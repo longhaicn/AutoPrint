@@ -7,11 +7,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>anonymous complex type的 Java 类。
+ * <p>
+ * anonymous complex type的 Java 类。
  * 
- * <p>以下模式片段指定包含在此类中的预期内容。
+ * <p>
+ * 以下模式片段指定包含在此类中的预期内容。
  * 
  * <pre>
  * &lt;complexType>
@@ -28,37 +29,32 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "printLabelResult"
-})
+@XmlType(name = "", propOrder = { "printLabelResult" })
 @XmlRootElement(name = "PrintLabelResponse")
 public class PrintLabelResponse {
 
-    @XmlElement(name = "PrintLabelResult")
-    protected String printLabelResult;
+	@XmlElement(name = "PrintLabelResult")
+	protected String printLabelResult;
 
-    /**
-     * 获取printLabelResult属性的值。
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPrintLabelResult() {
-        return printLabelResult;
-    }
+	/**
+	 * 获取printLabelResult属性的值。
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getPrintLabelResult() {
+		return printLabelResult;
+	}
 
-    /**
-     * 设置printLabelResult属性的值。
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPrintLabelResult(String value) {
-        this.printLabelResult = value;
-    }
+	/**
+	 * 设置printLabelResult属性的值。
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setPrintLabelResult(String value) {
+		this.printLabelResult = value;
+	}
 
 }

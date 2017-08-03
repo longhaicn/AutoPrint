@@ -15,7 +15,7 @@ import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import org.xml.sax.InputSource;
 
-public class DuXMLDoc{
+public class DuXMLDoc {
 	@SuppressWarnings("rawtypes")
 	public List<Map<String, String>> xmlElements(String xmlDoc) throws JDOMException, IOException {
 		StringReader xmlString = new StringReader(xmlDoc);

@@ -6,11 +6,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>anonymous complex type的 Java 类。
+ * <p>
+ * anonymous complex type的 Java 类。
  * 
- * <p>以下模式片段指定包含在此类中的预期内容。
+ * <p>
+ * 以下模式片段指定包含在此类中的预期内容。
  * 
  * <pre>
  * &lt;complexType>
@@ -28,62 +29,53 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "macAddress",
-    "printSettings"
-})
+@XmlType(name = "", propOrder = { "macAddress", "printSettings" })
 @XmlRootElement(name = "PrintLabel")
 public class PrintLabel {
 
-    protected String macAddress;
-    protected String printSettings;
+	protected String macAddress;
+	protected String printSettings;
 
-    /**
-     * 获取macAddress属性的值。
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMacAddress() {
-        return macAddress;
-    }
+	/**
+	 * 获取macAddress属性的值。
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getMacAddress() {
+		return macAddress;
+	}
 
-    /**
-     * 设置macAddress属性的值。
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMacAddress(String value) {
-        this.macAddress = value;
-    }
+	/**
+	 * 设置macAddress属性的值。
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setMacAddress(String value) {
+		this.macAddress = value;
+	}
 
-    /**
-     * 获取printSettings属性的值。
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPrintSettings() {
-        return printSettings;
-    }
+	/**
+	 * 获取printSettings属性的值。
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getPrintSettings() {
+		return printSettings;
+	}
 
-    /**
-     * 设置printSettings属性的值。
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPrintSettings(String value) {
-        this.printSettings = value;
-    }
+	/**
+	 * 设置printSettings属性的值。
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setPrintSettings(String value) {
+		this.printSettings = value;
+	}
 
 }

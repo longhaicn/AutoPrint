@@ -9,8 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,23 +22,13 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.newrocktech.autoprint.impl.WorkerListImpl;
-import com.newrocktech.autoprint.utils.ConfigUtils;
-import com.newrocktech.autoprint.utils.ToolUtils;
-
-import java.awt.Toolkit;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 /**
  * Login Frame
  * 
  * @author Lenhart
- *
  */
 public class LoginFrame extends BaseFrame {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField accountField;
@@ -60,15 +52,14 @@ public class LoginFrame extends BaseFrame {
 			}
 		});
 	}
-	
+
 	/**
 	 * Create the frame.
 	 */
 	public LoginFrame() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("picture\\logo.jpg"));
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("±êÇ©´òÓ¡ÖÐ¼ä¼þ-µÇÂ¼");
+		setTitle("\u6807\u7B7E\u81EA\u52A8\u6253\u5370\u7CFB\u7EDF-\u767B\u5F55");
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -82,7 +73,7 @@ public class LoginFrame extends BaseFrame {
 
 		JLabel lblLeft = new JLabel("");
 		lblLeft.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLeft.setIcon(new ImageIcon("picture\\newrocktech.jpg"));
+		lblLeft.setIcon(new ImageIcon("picture\\autoprint.png"));
 		panelMain.add(lblLeft);
 
 		JPanel panelLogin = new JPanel();
@@ -90,12 +81,15 @@ public class LoginFrame extends BaseFrame {
 		contentPane.add(panelLogin, BorderLayout.CENTER);
 		panelLogin.setLayout(null);
 
-		JLabel lblTitile = new JLabel("»¶Ó­µÇÂ¼-±êÇ©´òÓ¡ÖÐ¼ä¼þ£¡");
-		lblTitile.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
+		JLabel lblTitile = new JLabel(
+				"\u6B22\u8FCE\u767B\u5F55-\u6807\u7B7E\u81EA\u52A8\u6253\u5370\u7CFB\u7EDF\uFF01");
+		lblTitile.setForeground(new Color(0, 0, 128));
+		lblTitile.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		lblTitile.setBounds(97, 85, 271, 30);
 		panelLogin.add(lblTitile);
 
 		JLabel lblAccount = new JLabel("µÇÂ¼ÕË»§£º");
+		lblAccount.setForeground(new Color(0, 0, 128));
 		lblAccount.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		lblAccount.setBounds(100, 200, 70, 30);
 		panelLogin.add(lblAccount);
@@ -125,6 +119,7 @@ public class LoginFrame extends BaseFrame {
 		panelLogin.add(lblPrompt);
 
 		JLabel lblPassword = new JLabel("ÕË»§ÃÜÂë£º");
+		lblPassword.setForeground(new Color(0, 0, 128));
 		lblPassword.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		lblPassword.setBounds(100, 240, 70, 30);
 		panelLogin.add(lblPassword);
@@ -133,18 +128,19 @@ public class LoginFrame extends BaseFrame {
 		passwordField.setEditable(false);
 		passwordField.setText("password");
 		passwordField.setBounds(175, 240, 200, 30);
-		passwordField.addKeyListener(new KeyAdapter() {});
+		passwordField.addKeyListener(new KeyAdapter() {
+		});
 		panelLogin.add(passwordField);
-		
+
 		JComboBox cbx = new JComboBox();
-		cbx.setModel(new DefaultComboBoxModel(new String[] {"A", "B", "C", "D", "E", "Manager"}));
+		cbx.setModel(new DefaultComboBoxModel(new String[] { "A", "B", "C", "D", "E", "Manager" }));
 		cbx.setBounds(175, 200, 200, 30);
 		panelLogin.add(cbx);
-		
+
 		JButton btnLogin = new JButton("µÇÂ¼");
-		btnLogin.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		btnLogin.setFont(new Font("»ªÎÄÏ¸ºÚ", Font.PLAIN, 20));
 		btnLogin.setForeground(Color.WHITE);
-		btnLogin.setBackground(Color.DARK_GRAY);
+		btnLogin.setBackground(new Color(0, 0, 139));
 		btnLogin.setBounds(175, 300, 200, 37);
 		btnLogin.setFocusable(false);
 		btnLogin.addActionListener(new ActionListener() {
@@ -155,12 +151,13 @@ public class LoginFrame extends BaseFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-//							String account = ConfigUtils.get("NEWROCK_ACCOUNT");
+							// String account =
+							// ConfigUtils.get("NEWROCK_ACCOUNT");
 							String account = cbx.getSelectedItem().toString();
 							if ("W".equals(WorkerListImpl.loginWorker(account))) {
 								MainFrame frame = new MainFrame(account);
 								frame.setVisible(true);
-							}else if("M".equals(WorkerListImpl.loginWorker(account))){
+							} else if ("M".equals(WorkerListImpl.loginWorker(account))) {
 								ManagerFrame frame = new ManagerFrame(account);
 								frame.setVisible(true);
 							}
@@ -171,17 +168,19 @@ public class LoginFrame extends BaseFrame {
 				});
 			}
 		});
-		
+
 		panelLogin.add(btnLogin);
-		
-		
-		JLabel lblButtom = new JLabel("\u7248\u6743\u6240\u6709  \u4E0A\u6D77\u8FC5\u65F6\u901A\u4FE1\u8BBE\u5907\u6709\u9650\u516C\u53F8 2017");
+
+		JLabel lblButtom = new JLabel(
+				"\u00A9\u7248\u6743\u6240\u6709  \u4E0A\u6D77\u8FC5\u65F6\u901A\u4FE1\u8BBE\u5907\u6709\u9650\u516C\u53F8 2017");
+		lblButtom.setForeground(new Color(0, 0, 128));
 		lblButtom.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblButtom, BorderLayout.SOUTH);
-		lblButtom.setFont(new Font("µÈÏß Light", Font.PLAIN, 18));
+		lblButtom.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		lblButtom.setBackground(Color.WHITE);
-		JLabel lblTop = new JLabel("±êÇ©´òÓ¡ÖÐ¼ä¼þ");
-		lblTop.setFont(new Font("ºÚÌå", Font.PLAIN, 70));
+		JLabel lblTop = new JLabel("\u6807\u7B7E\u81EA\u52A8\u6253\u5370\u7CFB\u7EDF");
+		lblTop.setForeground(new Color(0, 0, 128));
+		lblTop.setFont(new Font("»ªÎÄÁ¥Êé", Font.BOLD, 80));
 		lblTop.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblTop, BorderLayout.NORTH);
 		lblTop.setBackground(Color.WHITE);

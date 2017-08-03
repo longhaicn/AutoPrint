@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ConnectionTest">
+        <s:complexType />
+      </s:element>
+      <s:element name="ConnectionTestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConnectionTestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintLabel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="macAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="printModel" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bPrintAgain" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="copies" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="printContent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintLabelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PrintLabelResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConnectionTestSoapIn">
+    <wsdl:part name="parameters" element="tns:ConnectionTest" />
+  </wsdl:message>
+  <wsdl:message name="ConnectionTestSoapOut">
+    <wsdl:part name="parameters" element="tns:ConnectionTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="PrintLabelSoapIn">
+    <wsdl:part name="parameters" element="tns:PrintLabel" />
+  </wsdl:message>
+  <wsdl:message name="PrintLabelSoapOut">
+    <wsdl:part name="parameters" element="tns:PrintLabelResponse" />
+  </wsdl:message>
+  <wsdl:portType name="KgmWebServiceSoap">
+    <wsdl:operation name="ConnectionTest">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">测试连接</wsdl:documentation>
+      <wsdl:input message="tns:ConnectionTestSoapIn" />
+      <wsdl:output message="tns:ConnectionTestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintLabel">
+      <wsdl:input message="tns:PrintLabelSoapIn" />
+      <wsdl:output message="tns:PrintLabelSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="KgmWebServiceSoap" type="tns:KgmWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConnectionTest">
+      <soap:operation soapAction="http://tempuri.org/ConnectionTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintLabel">
+      <soap:operation soapAction="http://tempuri.org/PrintLabel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="KgmWebServiceSoap12" type="tns:KgmWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConnectionTest">
+      <soap12:operation soapAction="http://tempuri.org/ConnectionTest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintLabel">
+      <soap12:operation soapAction="http://tempuri.org/PrintLabel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="KgmWebService">
+    <wsdl:port name="KgmWebServiceSoap" binding="tns:KgmWebServiceSoap">
+      <soap:address location="http://192.168.130.250/print_test/KgmPrintService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="KgmWebServiceSoap12" binding="tns:KgmWebServiceSoap12">
+      <soap12:address location="http://192.168.130.250/print_test/KgmPrintService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

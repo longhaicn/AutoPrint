@@ -3,8 +3,6 @@ package com.newrocktech.autoprint.xml;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +13,7 @@ import com.newrocktech.autoprint.utils.Ping;
 import com.newrocktech.autoprint.utils.ToolUtils;
 
 public class LabelXMLValue {
+	@SuppressWarnings("finally")
 	public static String getWebCon(String domain) {
 		StringBuffer sb = new StringBuffer();
 		try {
@@ -27,28 +26,34 @@ public class LabelXMLValue {
 			in.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			return sb.toString();
 		}
-//		return sb.toString();
+		// return sb.toString();
 	}
 
+	/**
+	 * WEB Check
+	 * 
+	 * @param mappingIP
+	 * @return
+	 */
 	public static String checkWeb(String mappingIP) {
 		String pass = "未通过";
-		if(Ping.ping(mappingIP)){
+		if (Ping.ping(mappingIP)) {
 			String agreementHttp = "http";
 			String mappingPort = "80";
 			String url = agreementHttp + "://" + mappingIP + ":" + mappingPort;
 			String paramWeb = url + "/version";
 			String paramBoa = url + "/xml?method=gw.config.get&id=7&pass=pass";
 			String web = getWebCon(paramWeb);
-			String xmlDoc=null;
-			if(web.length()>3){
+			String xmlDoc = null;
+			if (web.length() > 3) {
 				xmlDoc = DeviceHttpRequest.sendGet(paramBoa, null, null);
 			}
-			pass = web.length() > 3 && xmlDoc.contains("?xml") ? "通过":"未通过";
+			pass = web.length() > 3 && xmlDoc.contains("?xml") ? "通过" : "未通过";
 		}
-		
+
 		return pass;
 	}
 
@@ -63,9 +68,6 @@ public class LabelXMLValue {
 		// }
 		// }
 		System.out.println(mappingIP);
-		ArrayList<Map<String, String>> a = new ArrayList<Map<String, String>>();
-		Map<String, String> map1 = new HashMap<String, String>();
-		List<Map<String, String>> result = null;
 		String agreementHttp = "http";
 		String mappingPort = "80";
 		String url = agreementHttp + "://" + mappingIP + ":" + mappingPort + "/xml?";
@@ -108,8 +110,6 @@ public class LabelXMLValue {
 		String mac_bin_model[] = new String[3];
 		int i = 0;
 
-		ArrayList<Map<String, String>> a = new ArrayList<Map<String, String>>();
-		Map<String, String> map1 = new HashMap<String, String>();
 		List<Map<String, String>> result = null;
 		String agreementHttp = "http";
 		String mappingPort = "80";
@@ -156,7 +156,7 @@ public class LabelXMLValue {
 
 		entity.MAC = mac_bin_model[0];
 		String bin[] = mac_bin_model[1].split("\\.");
-		entity.bin = bin[0] + "." + bin[1];
+		entity.BinHead = bin[0] + "." + bin[1];
 		String model[] = mac_bin_model[2].split(" ");
 		entity.Model = model[2];
 		entity.SN567 = ToolUtils.getSN567();

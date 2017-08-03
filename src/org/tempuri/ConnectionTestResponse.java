@@ -7,11 +7,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>anonymous complex type的 Java 类。
+ * <p>
+ * anonymous complex type的 Java 类。
  * 
- * <p>以下模式片段指定包含在此类中的预期内容。
+ * <p>
+ * 以下模式片段指定包含在此类中的预期内容。
  * 
  * <pre>
  * &lt;complexType>
@@ -28,37 +29,32 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "connectionTestResult"
-})
+@XmlType(name = "", propOrder = { "connectionTestResult" })
 @XmlRootElement(name = "ConnectionTestResponse")
 public class ConnectionTestResponse {
 
-    @XmlElement(name = "ConnectionTestResult")
-    protected String connectionTestResult;
+	@XmlElement(name = "ConnectionTestResult")
+	protected String connectionTestResult;
 
-    /**
-     * 获取connectionTestResult属性的值。
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getConnectionTestResult() {
-        return connectionTestResult;
-    }
+	/**
+	 * 获取connectionTestResult属性的值。
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getConnectionTestResult() {
+		return connectionTestResult;
+	}
 
-    /**
-     * 设置connectionTestResult属性的值。
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setConnectionTestResult(String value) {
-        this.connectionTestResult = value;
-    }
+	/**
+	 * 设置connectionTestResult属性的值。
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setConnectionTestResult(String value) {
+		this.connectionTestResult = value;
+	}
 
 }

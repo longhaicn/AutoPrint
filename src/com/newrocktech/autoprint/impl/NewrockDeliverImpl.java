@@ -11,15 +11,17 @@ import com.newrocktech.autoprint.entity.NewrockDeliverEntity;
 
 public class NewrockDeliverImpl {
 	public static List<NewrockDeliverEntity> queryAllGoods(String bin) {
-			Connection conn=null;
-			Statement stat = null;
-			ResultSet	rs=null;
-			ArrayList<NewrockDeliverEntity> list = new ArrayList<NewrockDeliverEntity>();
-			try {
-				conn = BaseDao.getConn();
-				stat = conn.createStatement();
-				rs   = stat.executeQuery("SELECT * FROM dbo.NewrockDeliver WHERE bin_head='"+bin+"';");
-				while(rs.next()){
+		String bins[] = bin.split("\\.");
+		bin = bins[0] + "." + bins[1];
+		Connection conn = null;
+		Statement stat = null;
+		ResultSet rs = null;
+		ArrayList<NewrockDeliverEntity> list = new ArrayList<NewrockDeliverEntity>();
+		try {
+			conn = BaseDao.getConn();
+			stat = conn.createStatement();
+			rs = stat.executeQuery("SELECT * FROM dbo.NewrockDeliver WHERE bin_head='" + bin + "';");
+			while (rs.next()) {
 				NewrockDeliverEntity entity = new NewrockDeliverEntity();
 				entity.setId(rs.getInt("id"));
 				entity.setLabel_sort(rs.getString("label_sort"));
@@ -28,35 +30,34 @@ public class NewrockDeliverImpl {
 				entity.setSn1234(rs.getString("sn1234"));
 				entity.setPass(rs.getString("pass"));
 				list.add(entity);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally{
-				BaseDao.getClose(rs, stat, conn);
 			}
-			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			BaseDao.getClose(rs, stat, conn);
 		}
+		return list;
+	}
+
 	public static String queryPass(String bin) {
 		String pass = null;
-		Connection conn=null;
+		Connection conn = null;
 		Statement stat = null;
-		ResultSet	rs=null;
+		ResultSet rs = null;
 		ArrayList<NewrockDeliverEntity> list = new ArrayList<NewrockDeliverEntity>();
 		try {
 			conn = BaseDao.getConn();
 			stat = conn.createStatement();
-			rs   = stat.executeQuery("SELECT pass FROM dbo.NewrockDeliver WHERE bin_head='"+bin+"';");
-			while(rs.next()){
-			pass = rs.getString("pass");
+			rs = stat.executeQuery("SELECT pass FROM dbo.NewrockDeliver WHERE bin_head='" + bin + "';");
+			while (rs.next()) {
+				pass = rs.getString("pass");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally{
+		} finally {
 			BaseDao.getClose(rs, stat, conn);
 		}
 		return pass;
 	}
-
-
 
 }

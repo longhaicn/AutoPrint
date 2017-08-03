@@ -158,6 +158,7 @@ public class DeviceHttpRequest {
 
 		return result;
 	}
+
 	public static String sendHttpPost(String url, String param, String Authorization) {
 		PrintWriter out = null;
 		BufferedReader in = null;

@@ -5,42 +5,126 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.newrocktech.autoprint.db.BaseDao;
-import com.newrocktech.autoprint.entity.NewrockDeliverEntity;
 import com.newrocktech.autoprint.utils.SQL;
-import com.newrocktech.autoprint.utils.ToolUtils;
 
 public class InitDataImpl {
 	public static void main(String[] args) {
-		(new InitDataImpl()).initNewrockDeliver();
+		// (new InitDataImpl()).initNewrockDeliver();
+		(new InitDataImpl()).initTadiranDeliver();
 	}
-	public void addNewrockDeliver(String newrock[]){
-		Connection conn= null;
-		Statement  stat= null;
-		ResultSet  rs = null;
+
+	public void addNewrockDeliver(String newrock[]) {
+		Connection conn = null;
+		Statement stat = null;
+		ResultSet rs = null;
 		try {
-			conn=BaseDao.getConn();//获取链接
-			stat= conn.createStatement();//
+			conn = BaseDao.getConn();// 获取链接
+			stat = conn.createStatement();//
 			String sql = SQL.addNewrockDeliverSQL(newrock);
- 
+
 			System.out.println(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			BaseDao.getClose(rs, stat, conn);
 		}
 		return;
 	}
+
 	public void initNewrockDeliver() {
 		String newrock[] = NewrockDeliver.split(";");
 		for (int i = 0; i < newrock.length; i++) {
 			addNewrockDeliver(newrock[i].split(","));
 		}
-		
+
 	}
-	String NewrockDeliver=""
-			+ "OM50中英标准,TMPN003,OM.N1,OM50 IPPBX,NNM1,admin;"
-			+ "OM20中英标准,TMPN001,OM.P1,OM20 IPPBX,NPM1,admin;"
-			+ "HX4E标准,TMPN001,MX.P1,HX4E语音网关(VoIP Gateway),NP01,hx4;"
+
+	public void initTadiranDeliver() {
+		String tadiran[] = TadiranDeliver.split(";");
+		for (int i = 0; i < tadiran.length; i++) {
+			addTadiranDeliver(tadiran[i].split(","));
+		}
+
+	}
+
+	private void addTadiranDeliver(String[] split) {
+		Connection conn = null;
+		Statement stat = null;
+		ResultSet rs = null;
+		try {
+			conn = BaseDao.getConn();// 获取链接
+			stat = conn.createStatement();//
+			String sql = SQL.addTadiranDeliverSQL(split);
+
+			System.out.println(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			BaseDao.getClose(rs, stat, conn);
+		}
+		return;
+	}
+
+	String TadiranDeliver = "" + "HX404E,TGW4-4FXS,77449231410,77449231400,7442314,TMPO001,NGW.P1,DO;"
+
+			+ "MX8A-8S,TGW8S-2G,77449231510,77449231500,7442315,TMPO002,NGW.N1,DO;"
+			+ "MX8A–4S/4,TGW8-2G,77449230510,77449230500,7442305,TMPO002,NGW.N1,DO;"
+
+			+ "MX60E-8S/8,TGW16-3G,77449265610,77449265600,7442656,TMPO001,NGW.H5,NO;"
+			+ "MX60E-8S/8-1DC,TGW16-3G-DC,77449265710,77449265700,7442657,TMPO001,NGW.H5,NO;"
+			+ "MX60E-24SB,TGW24-16-3G,77449265810,77449265800,7442658,TMPO001,NGW.H5,NO;"
+			+ "MX60E-24SB-1DC,TGW24-16-3G-DC,77449265910,77449265900,7442659,TMPO001,NGW.H5,NO;"
+			+ "MX60E-24S,TGW24-24-3G,77449266010,77449266000,7442660,TMPO001,NGW.H5,NO;"
+			+ "MX60E-24S-1DC,TGW24-24-3G-DC,77449266110,77449266100,7442661,TMPO001,NGW.H5,NO;"
+			+ "MX60E-16S/16B,TGW24-3G-16S/16B,77449266210,77449266200,7442662,TMPO001,NGW.H5,NO;"
+			+ "MX60E-16S/16B-1DC,TGW24-3G-16S/16B-DC,77449266310,77449266300,7442663,TMPO001,NGW.H5,NO;"
+			+ "MX60E-24S/8B,TGW24-3G-24S/8B,77449266410,77449266400,7442664,TMPO001,NGW.H5,NO;"
+			+ "MX60E-24S/8B-1DC,TGW24-3G-24S/8B-DC,77449266510,77449266500,7442665,TMPO001,NGW.H5,NO;"
+
+			+ "MX60-8S/8,TGW16-2G,77449255010,77449265000,7442650,TMPO003,NGW.H3,NO;"
+			+ "MX60-24SB,TGW24-16-2G,77449255110,77449265100,7442651,TMPO003,NGW.H3,NO;"
+			+ "MX60-24S,TGW24-24-2G,77449255210,77449265200,7442652,TMPO003,NGW.H3,NO;"
+			+ "MX60-16S/16B,TGW24-2G-16S/16B,77449258210,77449268200,7442682,TMPO003,NGW.H3,NO;"
+
+			+ "MX60-8S/8-1DC,TGW16-2G-DC,77449255310,77449265300,7442653,TMPO004,NGW.H3,NO;"
+			+ "MX60-24SB-1DC,TGW24-16-2G-DC,77449255410,77449265400,7442654,TMPO004,NGW.H3,NO;"
+			+ "MX60-24S-1DC,TGW24-24-2G-DC,77449255510,77449265500,7442655,TMPO004,NGW.H3,NO;"
+
+			+ "MX60-8S/8,TGW16-2G,77449255010,77449255000,7442550,TMPO003,NGW.H3,DO;"
+			+ "MX60-24SB,TGW24-16-2G,77449255110,77449255100,7442551,TMPO003,NGW.H3,DO;"
+			+ "MX60-24S,TGW24-24-2G,77449255210,77449255200,7442552,TMPO003,NGW.H3,DO;"
+
+			+ "MX60-8S/8-1DC,TGW16-2G-DC,77449255310,77449255300,7442553,TMPO004,NGW.H3,DO;"
+			+ "MX60-24SB-1DC,TGW24-16-2G-DC,77449255410,77449255400,7442554,TMPO004,NGW.H3,DO;"
+			+ "MX60-24S-1DC,TGW24-24-2G-DC,77449255510,77449255500,7442555,TMPO004,NGW.H3,DO;"
+
+			+ "MX120G-96FXS-C,TGW96-24-2G,77449255610,77449255600,7442556,TMPO001,NGW.F5,NO;"
+			+ "MX120G-96FXS-F,TGW96-96-2G,77449255710,77449255700,7442557,TMPO001,NGW.F5,NO;"
+			+ "MX120G-96FXS-C-2AC,TGW96-24-2G-2AC,77449255810,77449255800,7442558,TMPO001,NGW.F5,NO;"
+			+ "MX120G-96FXS-F-2AC,TGW96-96-2G-2AC,77449255910,77449255900,7442559,TMPO001,NGW.F5,NO;"
+
+			+ "MX120G-96FXS-C-1DC,TGW96-24-2G-DC,77449256010,77449256000,7442560,TMPO004,NGW.F5,NO;"
+			+ "MX120G-96FXS-F-1DC,TGW96-96-2G-DC,77449256110,77449256100,7442561,TMPO004,NGW.F5,NO;"
+			+ "MX120G-96FXS-C-2DC,TGW96-24-2G-2DC,77449256210,77449256200,7442562,TMPO004,NGW.F5,NO;"
+			+ "MX120G-96FXS-F-2DC,TGW96-96-2G-2DC,77449256310,77449256300,7442563,TMPO004,NGW.F5,NO;"
+
+			+ "MX100G-1E1/NC,TGW1E1-2G,77449230810,77449230800,7442308,TMPO002,NGW.L1,NO;"
+			+ "MX100G-2E1/NC,TGW2E1-2G,77449231010,77449231000,7442310,TMPO002,NGW.L1,NO;"
+			+ "MX100G-4E1/NC,TGW4E1-2G,77449230910,77449230900,7442309,TMPO002,NGW.L1,NO;"
+			+ "MX100G-2E1,TGW2E1,77449229710,77449229700,7442297,TMPO002,NGW.L1,NO;"
+			+ "MX100G-1E1-2AC/NC,TGW1E1-2G-2P,77449231610,77449231600,7442316,TMPO002,NGW.L1,NO;"
+			+ "MX100G-2E1-2AC/NC,TGW2E1-2G-2P,77449231710,77449231700,7442317,TMPO002,NGW.L1,NO;"
+			+ "MX100G-4E1-2AC/NC,TGW4E1-2G-2P,77449231810,77449231800,7442318,TMPO002,NGW.L1,NO;"
+
+			+ "MX100G-1E1-2DC/NC,TGW1E1-2G-2DC,77449256410,77449256400,7442564,TMPO004,NGW.L1,NO;"
+			+ "MX100G-2E1-2DC/NC,TGW2E1-2G-2DC,77449256510,77449256500,7442565,TMPO004,NGW.L1,NO;"
+			+ "MX100G-4E1-2DC/NC,TGW4E1-2G-2DC,77449256610,77449256600,7442566,TMPO004,NGW.L1,NO;"
+
+			+ "MX120-96FXS-C,TGW96-24,77449230610,77449230600,7442306,TMPO004,NGW.F3,NO;"
+			+ "MX120-96FXS-F,TGW96-96,77449229510,77449229500,7442295,TMPO004,NGW.F3,NO;";
+
+	String NewrockDeliver = "" + "OM50中英标准,TMPN003,OM.N1,OM50 IPPBX,NNM1,admin;"
+			+ "OM20中英标准,TMPN001,OM.P1,OM20 IPPBX,NPM1,admin;" + "HX4E标准,TMPN001,MX.P1,HX4E语音网关(VoIP Gateway),NP01,hx4;"
 			+ "OM50中英标准3C,TMPN004,OM.N1,OM50 IPPBX,NNM1,admin;"
 			+ "MX60标准交流,TMPN006,MX.H3,MX60语音网关(VoIP Gateway),NH07,mx60;"
 			+ "MX100G-S标准单直流,TMPN007,MX.L1,SIP-ISDN Gateway,NL08,mx100;"
@@ -48,90 +132,57 @@ public class InitDataImpl {
 			+ "MX60标准直流,TMPN007,MX.H3,MX60语音网关(VoIP Gateway),NH07,mx60;"
 			+ "MX120G标准单交流,TMPN010,MX.F5,MX120G语音网关(VoIP Gateway),NF05,mx120;"
 			+ "MX120G标准双交流,TMPN010,MX.F5,MX120G语音网关(VoIP Gateway),NF05,mx120;"
-			+ "OM80中英标准,TMPN005,OM.H3,OM80 IPPBX,NHM6,admin;"
-			+ "OM80SE中英标准,TMPN005,OM.H3,OM80 IPPBX入门版,NHM0,admin;"
-			+ "OM200中英标准,TMPN005,OM.F3,OM200 IPPBX,NFM1,admin;"
-			+ "OM200SE中英标准,TMPN005,OM.F3,OM200 IPPBX入门版,NFM0,admin;"
-			+ "OM500中英标准,TMPN005,OM.L1,OM500 IPPBX,NLM2,admin;"
-			+ "OM501中英标准,TMPN005,OM.L1,OM500 IPPBX,NLM2,admin;"
+			+ "OM80中英标准,TMPN005,OM.H3,OM80 IPPBX,NHM6,admin;" + "OM80SE中英标准,TMPN005,OM.H3,OM80 IPPBX入门版,NHM0,admin;"
+			+ "OM200中英标准,TMPN005,OM.F3,OM200 IPPBX,NFM1,admin;" + "OM200SE中英标准,TMPN005,OM.F3,OM200 IPPBX入门版,NFM0,admin;"
+			+ "OM500中英标准,TMPN005,OM.L1,OM500 IPPBX,NLM2,admin;" + "OM501中英标准,TMPN005,OM.L1,OM500 IPPBX,NLM2,admin;"
 			+ "OM502中英标准,TMPN005,OM.L1,OM500 IPPBX,NLM2,admin;"
 			+ "MX120标准,TMPN005,MX.F3,MX120语音网关(VoIP Gateway),NF01,mx120;"
 			+ "SX3000标准单交流,TMPN005,SBC.L1,Session Border Controller,NLS2,SX3000@123;"
 			+ "MX100G标准单交流,TMPN011,MX.L1,SIP-ISDN Gateway,NL02,mx100;"
 			+ "MX100G标准双交流,TMPN011,MX.L1,SIP-ISDN Gateway,NL02,mx100;"
 			+ "MX100G标准单直流,TMPN012,MX.L1,SIP-ISDN Gateway,NL02,mx100;"
-			+ "MX100G标准双直流,TMPN012,MX.L1,SIP-ISDN Gateway,NL02,mx100;"
-			+ "OM20白牌,TMPB001,PBX.P1,IPPBX,PPM1,admin;"
-			+ "OM50白牌,TMPB001,PBX.N1,IPPBX,PNM1,admin;"
-			+ "HX4E白牌,TMPB001,GW.P1,语音网关 VoIP Gateway,PP01,voip;"
-			+ "MX8A白牌,TMPB001,GW.N1,语音网关 VoIP Gateway,PN01,voip;"
-			+ "OM80白牌,TMPB002,PBX.H3,IPPBX,PHM6,admin;"
-			+ "OM80SE白牌,TMPB002,PBX.H3,IPPBX-SE,PHM0,admin;"
-			+ "OM200白牌	,TMPB002,PBX.F3,IPPBX,PFM1,admin;"
-			+ "OM200SE白牌,TMPB002,PBX.F3,IPPBX-SE,PFM0,admin;"
-			+ "OM500白牌,TMPB002,PBX.L1,IPPBX,PLM2,admin;"
-			+ "OM501白牌,TMPB002,PBX.L1,IPPBX,PLM2,admin;"
-			+ "OM502白牌,TMPB002,PBX.L1,IPPBX,PLM2,admin;"
+			+ "MX100G标准双直流,TMPN012,MX.L1,SIP-ISDN Gateway,NL02,mx100;" + "OM20白牌,TMPB001,PBX.P1,IPPBX,PPM1,admin;"
+			+ "OM50白牌,TMPB001,PBX.N1,IPPBX,PNM1,admin;" + "HX4E白牌,TMPB001,GW.P1,语音网关 VoIP Gateway,PP01,voip;"
+			+ "MX8A白牌,TMPB001,GW.N1,语音网关 VoIP Gateway,PN01,voip;" + "OM80白牌,TMPB002,PBX.H3,IPPBX,PHM6,admin;"
+			+ "OM80SE白牌,TMPB002,PBX.H3,IPPBX-SE,PHM0,admin;" + "OM200白牌	,TMPB002,PBX.F3,IPPBX,PFM1,admin;"
+			+ "OM200SE白牌,TMPB002,PBX.F3,IPPBX-SE,PFM0,admin;" + "OM500白牌,TMPB002,PBX.L1,IPPBX,PLM2,admin;"
+			+ "OM501白牌,TMPB002,PBX.L1,IPPBX,PLM2,admin;" + "OM502白牌,TMPB002,PBX.L1,IPPBX,PLM2,admin;"
 			+ "MX60白牌交流,TMPB002,GW.H3,语音网关 VoIP Gateway,PH07,voip;"
 			+ "MX120白牌交流,TMPB002,GW.F3,语音网关 VoIP Gateway,PF01,voip;"
 			+ "MX100G白牌单交流,TMPB002,GW.L1,中继网关 SIP-ISDN Gateway,PL02,voip;"
 			+ "MX100G白牌双交流,TMPB002,GW.L1,中继网关 SIP-ISDN Gateway,PL02,voip;"
 			+ "MX100G-S白牌单直流,TMPB003,GW.L1,SIP-ISDN Gateway,PL08,voip;"
 			+ "MX100G-S白牌双直流,TMPB003,GW.L1,SIP-ISDN Gateway,PL08,voip;"
-			+ "MX60白牌直流,TMPB003,GW.H3,语音网关 VoIP Gateway,PH07,voip;"
-			+ "OM200G白牌单交流,TMPB004,PBX.F5,IPPBX,PFM5,admin;"
-			+ "OM200G白牌双交流,TMPB004,PBX.F5,IPPBX,PFM5,admin;"
-			+ "MX120G白牌单交流,TMPB004,GW.F5,语音网关 VoIP Gateway,PF05,voip;"
+			+ "MX60白牌直流,TMPB003,GW.H3,语音网关 VoIP Gateway,PH07,voip;" + "OM200G白牌单交流,TMPB004,PBX.F5,IPPBX,PFM5,admin;"
+			+ "OM200G白牌双交流,TMPB004,PBX.F5,IPPBX,PFM5,admin;" + "MX120G白牌单交流,TMPB004,GW.F5,语音网关 VoIP Gateway,PF05,voip;"
 			+ "MX120G白牌双交流,TMPB004,GW.F5,语音网关 VoIP Gateway,PF05,voip;"
-			//TMPB005 
-			+ "OM200G白牌单直流,TMPB005,PBX.F5,IPPBX,PFM5,admin;"
-			+ "OM200G白牌双直流,TMPB005,PBX.F5,IPPBX,PFM5,admin;"
+			// TMPB005
+			+ "OM200G白牌单直流,TMPB005,PBX.F5,IPPBX,PFM5,admin;" + "OM200G白牌双直流,TMPB005,PBX.F5,IPPBX,PFM5,admin;"
 			+ "MX120G白牌单直流,TMPB005,GW.F5,语音网关 VoIP Gateway,PF05,voip;"
 			+ "MX120G白牌双直流,TMPB005,GW.F5,语音网关 VoIP Gateway,PF05,voip;"
-			//TMPN002
+			// TMPN002
 			+ "MX8A标准,TMPN002,MX.N1,MX8A语音网关(VoIP Gateway),NN01,mx8;"
-			//TMPN008
+			// TMPN008
 			+ "OM200G标准单交流,TMPN008,OM.F5,OM200G IPPBX,NFM5,admin;"
 			+ "OM200G标准双交流,TMPN008,OM.F5,OM200G IPPBX,NFM5,admin;"
-			//TMPN009
+			// TMPN009
 			+ "OM200G标准单直流,TMPN009,OM.F5,OM200G IPPBX,NFM5,admin;"
 			+ "OM200G标准双直流,TMPN009,OM.F5,OM200G IPPBX,NFM5,admin;"
 			+ "MX120G标准单直流,TMPN009,MX.F5,MX120G语音网关(VoIP Gateway),NF05,mx120;"
 			+ "MX120G标准双直流,TMPN009,MX.F5,MX120G语音网关(VoIP Gateway),NF05,mx120;"
-			//TMPN013,42,43
+			// TMPN013,42,43
 			+ "MX60E标准单交流,TMPN013,MX.H5,MX60E语音网关(VoIP Gateway),NH05,mx60;"
 			+ "MX60E标准双交流,TMPN013,MX.H5,MX60E语音网关(VoIP Gateway),NH05,mx60;"
 			+ "MX60E标准单直流,TMPN014,MX.H5,MX60E语音网关(VoIP Gateway),NH05,mx60;"
 			+ "MX60E标准双直流,TMPN014,MX.H5,MX60E语音网关(VoIP Gateway),NH05,mx60;"
 			+ "MX100G-S标准单交流,TMPN015,MX.L1,SIP-ISDN Gateway,NL08,mx100;"
 			+ "MX100G-S标准双交流,TMPN015,MX.L1,SIP-ISDN Gateway,NL08,mx100;"
-			//TMPB006,40
+			// TMPB006,40
 			+ "MX60E白牌单交流,TMPB006,GW.H5,语音网关 VoIP Gateway,PH05,voip;"
 			+ "MX60E白牌双交流,TMPB006,GW.H5,语音网关 VoIP Gateway,PH05,voip;"
 			+ "MX60E白牌单直流,TMPB007,GW.H5,语音网关 VoIP Gateway,PH05,voip;"
 			+ "MX60E白牌双直流,TMPB007,GW.H5,语音网关 VoIP Gateway,PH05,voip;"
-			//TMPB008
+			// TMPB008
 			+ "MX100G-S白牌单交流,TMPB008,GW.L1,中继网关 SIP-ISDN Gateway,PL08,voip;"
 			+ "MX100G-S白牌双交流,TMPB008,GW.L1,中继网关 SIP-ISDN Gateway,PL08,voip";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
